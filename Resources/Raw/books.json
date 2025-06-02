@@ -1,0 +1,74 @@
+[
+  {
+    "ISBN": "9781234567897",
+    "Title": "Le Petit Prince",
+    "Author": "Antoine de Saint-Exupéry",
+    "Category": "Fiction",
+    "Stock": 15,
+    "Price": 12.99,
+    "CoverImage": "https://covers.openlibrary.org/b/id/8231024-L.jpg"
+  },
+  {
+    "ISBN": "9782345678901",
+    "Title": "L'Étranger",
+    "Author": "Albert Camus",
+    "Category": "Philosophie",
+    "Stock": 8,
+    "Price": 9.95,
+    "CoverImage": "https://covers.openlibrary.org/b/isbn/9782070360024-L.jpg"
+  },
+  {
+    "ISBN": "9783456789012",
+    "Title": "Harry Potter à l'école des sorciers",
+    "Author": "J.K. Rowling",
+    "Category": "Fantasy",
+    "Stock": 23,
+    "Price": 14.50,
+    "CoverImage": "https://covers.openlibrary.org/b/isbn/9782070643028-L.jpg"
+  },
+  {
+    "ISBN": "9784567890123",
+    "Title": "Les Misérables",
+    "Author": "Victor Hugo",
+    "Category": "Classique",
+    "Stock": 7,
+    "Price": 19.99,
+    "CoverImage": "https://covers.openlibrary.org/b/id/12749857-L.jpg"
+  },
+  {
+    "ISBN": "9785678901234",
+    "Title": "Le Seigneur des Anneaux",
+    "Author": "J.R.R. Tolkien",
+    "Category": "Fantasy",
+    "Stock": 12,
+    "Price": 24.99,
+    "CoverImage": "https://covers.openlibrary.org/b/id/7851546-L.jpg"
+  },
+  {
+    "ISBN": "9786789012345",
+    "Title": "1984",
+    "Author": "George Orwell",
+    "Category": "Science-Fiction",
+    "Stock": 18,
+    "Price": 11.50,
+    "CoverImage": "https://covers.openlibrary.org/b/isbn/9780451524935-L.jpg"
+  },
+  {
+    "ISBN": "9787890123456",
+    "Title": "Le Comte de Monte-Cristo",
+    "Author": "Alexandre Dumas",
+    "Category": "Classique",
+    "Stock": 5,
+    "Price": 15.75,
+    "CoverImage": "https://covers.openlibrary.org/b/id/10558242-L.jpg"
+  },
+  {
+    "ISBN": "9788901234567",
+    "Title": "Dune",
+    "Author": "Frank Herbert",
+    "Category": "Science-Fiction",
+    "Stock": 9,
+    "Price": 18.25,
+    "CoverImage": "https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg"
+  }
+]

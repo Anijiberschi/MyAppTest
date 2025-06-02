@@ -5,10 +5,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:MyApp.View"
     Shell.FlyoutBehavior="Disabled"
-    Title="MyApp">
+    Title="Gestion de Bibliothèque">
 
     <ShellContent
-        Title="Home"
+        Title="Accueil"
         ContentTemplate="{DataTemplate local:MainView}"
         Route="MainView" />
 

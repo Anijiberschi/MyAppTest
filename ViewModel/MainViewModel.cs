@@ -13,7 +13,7 @@ namespace MyApp.ViewModel;
 
 public partial class MainViewModel : BaseViewModel
 {
-    public ObservableCollection<StrangeAnimal> MyObservableList { get; } = [];
+    public ObservableCollection<Book> MyObservableList { get; } = [];
     JSONServices MyJSONService;
     CSVServices MyCSVServices;
 
@@ -22,19 +22,20 @@ public partial class MainViewModel : BaseViewModel
         this.MyJSONService = MyJSONService;
         this.MyCSVServices = MyCSVServices;
     }
- 
+
     [RelayCommand]
-    internal async Task GoToDetails(string id)
+    internal async Task GoToDetails(string isbn)
     {
         IsBusy = true;
 
-        await Shell.Current.GoToAsync("DetailsView", true, new Dictionary<string,object>
+        await Shell.Current.GoToAsync("DetailsView", true, new Dictionary<string, object>
         {
-            {"selectedAnimal",id}
+            {"selectedBook", isbn}
         });
 
         IsBusy = false;
     }
+
     [RelayCommand]
     internal async Task GoToGraph()
     {
@@ -44,41 +45,60 @@ public partial class MainViewModel : BaseViewModel
 
         IsBusy = false;
     }
+
     [RelayCommand]
     internal async Task PrintToCSV()
     {
         IsBusy = true;
 
-        await MyCSVServices.PrintData(Globals.MyStrangeAnimals);
+        await MyCSVServices.PrintData(Globals.MyBooks);
 
         IsBusy = false;
     }
+
     [RelayCommand]
     internal async Task LoadFromCSV()
     {
         IsBusy = true;
 
-        Globals.MyStrangeAnimals = await MyCSVServices.LoadData();
+        var loadedBooks = await MyCSVServices.LoadData();
+        if (loadedBooks.Count > 0)
+        {
+            Globals.MyBooks = loadedBooks;
+            await RefreshPage();
+            await Shell.Current.DisplayAlert("Succès", $"{loadedBooks.Count} livres ont été chargés depuis le fichier CSV", "OK");
+        }
 
         IsBusy = false;
     }
+
     [RelayCommand]
     internal async Task UploadJSON()
     {
         IsBusy = true;
 
-        await MyJSONService.SetStrangeAnimals(Globals.MyStrangeAnimals);
+        await MyJSONService.SetBooks(Globals.MyBooks);
 
         IsBusy = false;
     }
-    
+
     internal async Task RefreshPage()
     {
-        MyObservableList.Clear ();
+        MyObservableList.Clear();
 
-        if(Globals.MyStrangeAnimals.Count == 0) Globals.MyStrangeAnimals = await MyJSONService.GetStrangeAnimals();
+        if (Globals.MyBooks.Count == 0)
+        {
+            try
+            {
+                Globals.MyBooks = await MyJSONService.GetBooks();
+            }
+            catch (Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Erreur", $"Impossible de charger les données: {ex.Message}", "OK");
+            }
+        }
 
-        foreach (var item in Globals.MyStrangeAnimals)
+        foreach (var item in Globals.MyBooks)
         {
             MyObservableList.Add(item);
         }

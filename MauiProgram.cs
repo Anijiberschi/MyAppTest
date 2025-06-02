@@ -21,7 +21,7 @@ namespace MyApp
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             builder.Services.AddSingleton<MainView>();

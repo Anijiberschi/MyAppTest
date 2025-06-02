@@ -5,56 +5,87 @@
              xmlns:model="clr-namespace:MyApp.Model" 
              x:Class="MyApp.View.DetailsView"             
              x:DataType="viewmodel:DetailsViewModel"
-             Title="DetailsView">
-    
-    <VerticalStackLayout>
-        <HorizontalStackLayout Padding="10" Spacing="10">
-            <Label Text="Emulator : " VerticalOptions="Center"/>
-            <Switch OnColor="{StaticResource Primary}"
-                    ThumbColor="{StaticResource Primary}" 
-                    IsToggled="{Binding EmulatorON_OFF}"
-                    VerticalOptions="Center"/>            
-        </HorizontalStackLayout>
-        <Grid ColumnDefinitions="0.1*,0.3*,*" RowDefinitions="*,*,*,*,*" Padding="20" RowSpacing="20">
-            <Label  Grid.Column="0" Grid.Row="0" Text="Id:" VerticalOptions="Center"/>
-            <Entry  Grid.Column="1" Grid.Row="0"  
-                    Text="{Binding Id}"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" 
-                    WidthRequest="300"/>
-            <Label  Grid.Column="0" Grid.Row="1" Text="Nom:" VerticalOptions="Center"/>
-            <Entry  Grid.Column="1" Grid.Row="1"
-                    Text="{Binding Name}"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" 
-                    WidthRequest="300" />
-            <Label  Grid.Column="0" Grid.Row="2" Text="Description:" VerticalOptions="Center"/>
-            <Entry  Grid.Column="1" Grid.Row="2"
-                    Text="{Binding Description}"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" 
-                    WidthRequest="300" />
-            <Label  Grid.Column="0" Grid.Row="3" Text="Image:" VerticalOptions="Center"/>
-            <Entry  Grid.Column="1" Grid.Row="3" 
-                    Text="{Binding Picture}"
-                    VerticalOptions="Center" 
-                    HorizontalOptions="Center" 
-                    WidthRequest="300" />
-            <Button x:Name="MyAnimatedButton"
-                    Grid.Column="1"
-                    Grid.Row="4"
-                    WidthRequest="100" 
-                    HorizontalOptions="Center"
-                    Text="Valider"
-                    Command="{Binding ChangeObjectParametersCommand}"
-                    Clicked="MyAnimatedButton_Clicked"
-                    IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BaseViewModel}}, Path= IsNotBusy}"/>
-            
-        </Grid>
-        <HorizontalStackLayout Spacing="20">
-            <Label Text="Serial Data: "></Label>
-            <Label Text="{Binding SerialBufferContent}" TextColor="Red"></Label>
-        </HorizontalStackLayout>
+             Title="Détails du livre">
 
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+            <HorizontalStackLayout Padding="10" Spacing="10">
+                <Label Text="Mode Scanner: " VerticalOptions="Center" FontSize="16"/>
+                <Switch OnColor="{StaticResource Primary}"
+                        ThumbColor="{StaticResource Primary}" 
+                        IsToggled="{Binding EmulatorON_OFF}"
+                        VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout Spacing="20">
+                <Label Text="Scanner: " VerticalOptions="Center" FontSize="16"/>
+                <Label Text="{Binding SerialBufferContent}" 
+                       TextColor="Red" 
+                       FontSize="16" 
+                       FontAttributes="Bold"/>
+            </HorizontalStackLayout>
+
+            <Grid ColumnDefinitions="0.3*,0.7*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="15">
+                <Label  Grid.Column="0" Grid.Row="0" Text="ISBN:" VerticalOptions="Center" FontSize="16"/>
+                <Entry  Grid.Column="1" Grid.Row="0"  
+                        Text="{Binding ISBN}"
+                        Placeholder="Scannez le code-barres ou entrez l'ISBN"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Fill"/>
+
+                <Label  Grid.Column="0" Grid.Row="1" Text="Titre:" VerticalOptions="Center" FontSize="16"/>
+                <Entry  Grid.Column="1" Grid.Row="1"
+                        Text="{Binding Title}"
+                        Placeholder="Titre du livre"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Fill"/>
+
+                <Label  Grid.Column="0" Grid.Row="2" Text="Auteur:" VerticalOptions="Center" FontSize="16"/>
+                <Entry  Grid.Column="1" Grid.Row="2"
+                        Text="{Binding Author}"
+                        Placeholder="Auteur du livre"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Fill"/>
+
+                <Label  Grid.Column="0" Grid.Row="3" Text="Catégorie:" VerticalOptions="Center" FontSize="16"/>
+                <Entry  Grid.Column="1" Grid.Row="3"
+                        Text="{Binding Category}"
+                        Placeholder="Catégorie du livre"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Fill"/>
+
+                <Label  Grid.Column="0" Grid.Row="4" Text="Stock:" VerticalOptions="Center" FontSize="16"/>
+                <Entry  Grid.Column="1" Grid.Row="4"
+                        Text="{Binding Stock}"
+                        Keyboard="Numeric"
+                        Placeholder="Quantité en stock"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Fill"/>
+
+                <Label  Grid.Column="0" Grid.Row="5" Text="Prix:" VerticalOptions="Center" FontSize="16"/>
+                <Entry  Grid.Column="1" Grid.Row="5"
+                        Text="{Binding Price}"
+                        Keyboard="Numeric"
+                        Placeholder="Prix du livre"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Fill"/>
+
+                <Label  Grid.Column="0" Grid.Row="6" Text="Image:" VerticalOptions="Center" FontSize="16"/>
+                <Entry  Grid.Column="1" Grid.Row="6" 
+                        Text="{Binding CoverImage}"
+                        Placeholder="URL de l'image de couverture"
+                        VerticalOptions="Center" 
+                        HorizontalOptions="Fill" />
+
+                <Button Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="2"
+                        x:Name="MyAnimatedButton"
+                        WidthRequest="200" 
+                        HorizontalOptions="Center"
+                        Text="Enregistrer"
+                        Command="{Binding ChangeObjectParametersCommand}"
+                        Clicked="MyAnimatedButton_Clicked"
+                        IsEnabled="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:BaseViewModel}}, Path= IsNotBusy}"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
